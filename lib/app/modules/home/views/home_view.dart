@@ -17,6 +17,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     var tabIndex = 0.obs;
+    final pageKey = GlobalKey();
 
     late PageController pageController;
     double largura = MediaQuery.of(context).size.width;
@@ -27,7 +28,6 @@ class HomeView extends GetView<HomeController> {
           title:
               const Text('Fundação Padre Leonel Franca - Controle de Projetos'),
           actions: [
-            //  wdateRange(context),
             ElevatedButton(
               onPressed: () {
                 tabIndex.value = 0;
@@ -96,6 +96,7 @@ class HomeView extends GetView<HomeController> {
           height: MediaQuery.of(context).size.height - 50,
           child: PageView(
             controller: pageController,
+            key: pageKey,
             onPageChanged: (v) {
               tabIndex.value = v;
             },
@@ -128,25 +129,6 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget wdateRange(BuildContext context) {
-    final firstDateController = TextEditingController();
-    final secondDateController = TextEditingController();
-    return Column(
-      children: [
-        TextField(
-          controller: firstDateController,
-          keyboardType: TextInputType.datetime,
-          decoration: const InputDecoration(labelText: 'Primeira data'),
-        ),
-        TextField(
-          controller: secondDateController,
-          keyboardType: TextInputType.datetime,
-          decoration: const InputDecoration(labelText: 'Segunda data'),
-        ),
-      ],
     );
   }
 }

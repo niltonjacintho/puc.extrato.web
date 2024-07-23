@@ -11,7 +11,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../controllers/login_controller.dart';
 
-final _formKey = GlobalKey();
+
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
@@ -19,6 +19,7 @@ class LoginView extends GetView<LoginController> {
   static Editors editors = const Editors();
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey();
     var obscureText = true.obs;
 
     CoordenadorController coordenadorController =

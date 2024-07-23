@@ -22,7 +22,7 @@ void main() {
   Get.put(SaldoContasController());
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "FPLF Extrato de Projetos",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       localizationsDelegates: const [
