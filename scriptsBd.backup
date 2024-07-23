@@ -1,0 +1,19 @@
+// 2024-07-24
+Create Procedure [dbo].[sp_internet_Analise_Contas] @coordenador as int, @contaMae as varchar(10), @data as varchar(10)
+as
+SELECT p.codigo codigo_projeto
+	,p.projeto nomeProjeto
+	  ,c.conta conta
+	  ,c.descricao 
+	  ,sum(isnull(m.receita,0) - isnull(m.despesa,0)) saldo
+  FROM [dbo].[Movimentos] M
+  INNER JOIN Projetos p ON P.codigo = M.projeto
+  inner join plano_de_contas c on c.conta = p.conta_principal
+ where 
+	p.conta_principal like '%'+@contaMae+'%' 
+	and 
+	p.coordenador = @coordenador
+	and
+	m.data is not null
+ group by p.projeto, p.codigo, c.conta ,c.descricao
+  order by p.projeto

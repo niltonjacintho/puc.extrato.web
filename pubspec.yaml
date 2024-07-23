@@ -1,0 +1,45 @@
+name: pucextrato
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.6
+  google_fonts: ^4.0.3
+  circle_nav_bar: ^2.0.1+1
+  flutter: 
+    sdk: flutter
+  http: ^0.13.5
+  dio: ^5.1.1
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  dropdown_textfield: ^1.0.8
+  pluto_grid_plus: ^8.4.2
+  pluto_grid_plus_export: ^1.0.4
+  date_format: ^2.0.7
+  animated_button_bar: ^1.0.0
+  top_snackbar_flutter: ^3.0.0+1
+  calendar_date_picker2: ^1.1.5
+  floating_bottom_navigation_bar: ^1.5.2
+  file_saver: ^0.2.1
+  flutter_form_builder: ^9.3.0
+  # file_saver: ^0.2.1
+  
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+dependency_overrides:
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.1    
+
+flutter: 
+  uses-material-design: true
+  assets:
+    - ./assets/images/logo.jpg
+
