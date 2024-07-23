@@ -19,20 +19,16 @@ class ConfigController extends GetxController {
     return Obx(
       () => Expanded(
         flex: 1,
-        child: FormBuilder(
-          key: _formKey,
-          child: FormBuilderDateTimePicker(
-            name: 'dt_inicio',
-            initialEntryMode: DatePickerEntryMode.calendar,
-            initialDate: inicioPeriodo.value,
-            inputType:
-                InputType.date, // This is crucial for selecting only date
-            format: DateFormat('dd/MM/yyyy'),
-            decoration: const InputDecoration(labelText: 'Data Inicial'),
-            onChanged: (val) {
-              inicioPeriodo.value = val!;
-            },
-          ),
+        child: FormBuilderDateTimePicker(
+          name: 'dt_inicio',
+          initialEntryMode: DatePickerEntryMode.calendar,
+          initialDate: inicioPeriodo.value,
+          inputType: InputType.date, // This is crucial for selecting only date
+          format: DateFormat('dd/MM/yyyy'),
+          decoration: const InputDecoration(labelText: 'Data Inicial'),
+          onChanged: (val) {
+            inicioPeriodo.value = val!;
+          },
         ),
       ),
     );

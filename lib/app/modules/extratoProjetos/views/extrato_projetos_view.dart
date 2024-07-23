@@ -195,7 +195,7 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                     stateManager = event.stateManager;
                   },
                   onChanged: (PlutoGridOnChangedEvent event) {
-                    print(event);
+                    null;
                   },
                   // configuration: const PlutoGridConfiguration(),
                 ),

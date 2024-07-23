@@ -21,14 +21,10 @@ class ExtratoProjetosService {
     final lista = [];
     final response = await dio.get(
         '${config.urlPadrao}/extratos/getExtrato/projeto/${projetos.idProjeto}/di/${config.inicioPeriodo.value.toIso8601String().substring(0, 10)}/df/${config.fimPeriodo.value.toIso8601String().substring(0, 10)}/pagina/1/pagina_tamanho/9999');
-    print(
-        '${config.urlPadrao}/extratos/getExtrato/projeto/${projetos.idProjeto}/di/${config.inicioPeriodo.value.toIso8601String().substring(0, 10)}/df/${config.fimPeriodo.value.toIso8601String().substring(0, 10)}/pagina/1/pagina_tamanho/9999');
-    print(response);
     List<dynamic>? data = jsonDecode(response.data[0])['tabExtrato'];
     extrato.rows.clear();
     if (data != null) {
       for (var element in data) {
-        print(element);
         String dateTime = '';
         try {
           String dateString = element['data'];
@@ -44,7 +40,7 @@ class ExtratoProjetosService {
           dateTime = '$day/$month/$year';
           // DateTime(year, month, day);
         } catch (e) {
-          print('ERRO $e');
+          print('ERROR $e');
         }
 
         final PlutoRow r = PlutoRow(
