@@ -11,6 +11,7 @@ import 'package:pucextrato/app/modules/contas/controllers/contas_controller.dart
 import 'package:pucextrato/app/modules/general/config.dart';
 import 'package:pluto_grid_plus_export/pluto_grid_plus_export.dart'
     as pluto_grid_export;
+import 'package:pucextrato/app/modules/login/controllers/login_controller.dart';
 
 import '../controllers/saldo_projetos_controller.dart';
 
@@ -18,6 +19,7 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
   const SaldoProjetosView({Key? key}) : super(key: key);
   static ContasController contas = Get.put(ContasController());
   static ConfigController config = Get.put(ConfigController());
+  static LoginController login = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -123,16 +125,25 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
                         children: [
                           ButtonBarEntry(
                             onTap: () async {
-                              var title =
-                                  'Saldos dos projetos da conta - ${contas.contaAtual.trim()}';
+                              controller.getExtratoExcel(
+                                  login.usuario.value,
+                                  contas.contaAtual.value,
+                                  contas.contaDescricao.value,
+                                  config.fimPeriodo.value);
 
-                              var exported = const Utf8Encoder().convert(
-                                  pluto_grid_export.PlutoGridExport.exportCSV(
-                                      stateManager));
-                              await FileSaver.instance.saveFile(
-                                  name: "$title.csv",
-                                  bytes: exported,
-                                  ext: ".csv");
+//http://139.82.24.10/MobServ/api/extratos/GetAnaliseContasExcel/coordenador/2247/conta/32006.000/data/2024-07-24
+
+//http://139.82.24.10/MobServ/download/excel/Saldo%20dos%20Projetos%20-%20COMPUTACAO%20GRAFICA.xls
+                              // var title =
+                              //     'Saldos dos projetos da conta - ${contas.contaAtual.trim()}';
+
+                              // var exported = const Utf8Encoder().convert(
+                              //     pluto_grid_export.PlutoGridExport.exportCSV(
+                              //         stateManager));
+                              // await FileSaver.instance.saveFile(
+                              //     name: "$title.csv",
+                              //     bytes: exported,
+                              //     ext: ".csv");
                             },
                             child: const Text('Exportar Excel'),
                           ),

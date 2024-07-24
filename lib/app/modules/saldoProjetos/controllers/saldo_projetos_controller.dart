@@ -23,6 +23,15 @@ class SaldoProjetosController extends GetxController {
     await saldoProjetosService.getExtrato();
   }
 
+  getExtratoExcel(
+      String coordenador, String conta, String nomeConta, DateTime data) async {
+    nomeConta = nomeConta.split('-')[1].trim();
+    String dt =
+        '${data.year}-${data.month.toString().padLeft(2, '0')}-${data.day.toString().padLeft(2, '0')}';
+
+    await saldoProjetosService.getExcel(coordenador, conta, nomeConta, dt);
+  }
+
   @override
   void refresh() {
     super.refresh();

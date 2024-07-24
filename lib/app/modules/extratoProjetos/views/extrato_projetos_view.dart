@@ -156,16 +156,23 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                         children: [
                           ButtonBarEntry(
                             onTap: () async {
-                              var title =
-                                  'Saldos dos projetos ${projetos.nome.value.trim()}';
+                              final url =
+                                  '${config.urlPadrao}/extratos/getExtratoExcel/projeto/15026/di/${config.isoDate(config.inicioPeriodo.value)}/df/${config.isoDate(config.fimPeriodo.value)}/modo/2';
 
-                              var exported = const Utf8Encoder().convert(
-                                  pluto_grid_export.PlutoGridExport.exportCSV(
-                                      stateManager));
-                              await FileSaver.instance.saveFile(
-                                  name: "$title.csv",
-                                  bytes: exported,
-                                  ext: ".csv");
+                              config.downloadFile(
+                                  url: url,
+                                  fileName: projetos.nome.value.trim(),
+                                  dataType: "application/vnd.ms-excel");
+                              // var title =
+                              //     'Saldos dos projetos ${projetos.nome.value.trim()}';
+
+                              // var exported = const Utf8Encoder().convert(
+                              //     pluto_grid_export.PlutoGridExport.exportCSV(
+                              //         stateManager));
+                              // await FileSaver.instance.saveFile(
+                              //     name: "$title.csv",
+                              //     bytes: exported,
+                              //     ext: ".csv");
                             },
                             child: const Text('Exportar Excel'),
                           ),

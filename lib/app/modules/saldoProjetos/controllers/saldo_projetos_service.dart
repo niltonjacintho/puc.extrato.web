@@ -21,7 +21,6 @@ class SaldoProjetosService {
 
   Future<RxList<PlutoRow>> getRows(List<SaldoProjetoModel> lista) async {
     RxList<PlutoRow> rows = RxList<PlutoRow>([]);
-    print('Linhas em lista ${lista.length}');
     for (var element in lista) {
       final PlutoRow r = PlutoRow(
         cells: {
@@ -49,5 +48,18 @@ class SaldoProjetosService {
       saldoProjetosController.rows.add(r);
     }
     saldoProjetosController.refresh();
+  }
+
+  getExcel(
+      String coordenador, String conta, String nomeConta, String data) async {
+    var response = await dio.get(
+        '${configController.urlPadrao}extratos/GetAnaliseContasExcel/coordenador/$coordenador/conta/$conta/data/$data');
+    if (response.statusCode == 200) {
+      configController.downloadFile(
+          url:
+              "${configController.urlPadraoBase}MobServ/download/excel/Saldo%20dos%20Projetos%20-%20${nomeConta.trim()}.xls",
+          fileName: "${nomeConta.trim()}.xls",
+          dataType: "application/vnd.ms-excel");
+    }
   }
 }

@@ -1,10 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+import 'package:universal_html/html.dart' as universal_html;
 
 class ConfigController extends GetxController {
+  Dio dio = Dio();
   String urlPadrao = 'http://139.82.24.10/MobServ/api/';
+  String urlPadraoBase = 'http://139.82.24.10/';
   final _formKey = GlobalKey<FormBuilderState>();
   Rx<DateTime> inicioPeriodo =
       DateTime.now().subtract(const Duration(days: 30)).obs;
@@ -13,6 +20,10 @@ class ConfigController extends GetxController {
   double width(BuildContext context, double perc) {
     double screenWidth = MediaQuery.of(context).size.width;
     return screenWidth * (perc / 100);
+  }
+
+  String isoDate(DateTime data) {
+    return '${data.year}-${data.month.toString().padLeft(2, '0')}-${data.day.toString().padLeft(2, '0')}';
   }
 
   Widget wgtDataInicial(BuildContext context) {
@@ -51,5 +62,28 @@ class ConfigController extends GetxController {
         ),
       ),
     );
+  }
+
+  Future<void> downloadFile(
+      {required String url,
+      required String fileName,
+      required String dataType}) async {
+    try {
+      print('URL => $url');
+      final response = await dio.get(Uri.parse(url).toString(),
+          options: Options(
+            responseType: ResponseType.bytes,
+          ));
+      final base64 = base64Encode(response.data);
+      final anchor = universal_html.AnchorElement(
+          href: 'data:application/octet-stream;base64,$base64')
+        ..target = 'blank';
+      anchor.download = '${fileName.trim()}.xls';
+      universal_html.document.body?.append(anchor);
+      anchor.click();
+      anchor.remove();
+    } catch (e) {
+      print(e);
+    }
   }
 }
