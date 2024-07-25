@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/projetos_controller.dart';
 
 class ProjetosView extends GetView<ProjetosController> {
-  const ProjetosView({Key? key}) : super(key: key);
+  const ProjetosView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +13,7 @@ class ProjetosView extends GetView<ProjetosController> {
         title: const Text('ProjetosView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'ProjetosView is working',
           style: TextStyle(fontSize: 20),

@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pluto_grid_plus/pluto_grid_plus.dart';
-import 'package:pucextrato/app/modules/extratoProjetos/controllers/extratoProjetos_service.dart';
+import 'package:pucextrato/app/modules/extratoProjetos/controllers/extrato_projetos_service.dart';
 import 'package:pucextrato/app/modules/extratoProjetos/model/extrato_model.dart';
-import 'package:pucextrato/app/modules/general/config.dart';
-import 'package:pucextrato/app/modules/projetos/controllers/projetos_controller.dart';
 
 class ExtratoProjetosController extends GetxController {
   ExtratoProjetosService extratoService = Get.put(ExtratoProjetosService());

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 enum botao { normal, error }
 
 class Editors extends StatefulWidget {
-  const Editors({Key? key}) : super(key: key);
+  const Editors({super.key});
 
   Color _getCor(botao value) {
     Color result = const Color.fromARGB(255, 3, 45, 80);

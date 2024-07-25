@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/coordenador_controller.dart';
 
 class CoordenadorView extends GetView<CoordenadorController> {
-  const CoordenadorView({Key? key}) : super(key: key);
+  const CoordenadorView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

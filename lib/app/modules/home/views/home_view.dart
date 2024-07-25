@@ -10,7 +10,7 @@ import 'package:pucextrato/app/modules/saldoProjetos/views/saldo_projetos_view.d
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
   static Estilos estilo = Estilos.instance;
   static ConfigController config = Get.put(ConfigController());
 
@@ -92,7 +92,7 @@ class HomeView extends GetView<HomeController> {
             ),
           ],
         ),
-        body: Container(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height - 50,
           child: PageView(
             controller: pageController,

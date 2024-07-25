@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:pucextrato/app/modules/coordenador/controllers/coordenador_controller.dart';
 import 'package:pucextrato/app/modules/general/editors.dart';
 import 'package:pucextrato/app/modules/general/estilos.dart';
 import 'package:pucextrato/app/modules/home/views/home_view.dart';
@@ -14,7 +13,7 @@ import '../controllers/login_controller.dart';
 
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  const LoginView({super.key});
   static Estilos estilo = Estilos.instance;
   static Editors editors = const Editors();
   @override
@@ -22,8 +21,6 @@ class LoginView extends GetView<LoginController> {
     final _formKey = GlobalKey();
     var obscureText = true.obs;
 
-    CoordenadorController coordenadorController =
-        Get.put(CoordenadorController());
     return Scaffold(
       body: SafeArea(
         child: LayoutBuilder(

@@ -1,16 +1,11 @@
-import 'dart:convert';
-
 import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
-import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:pluto_grid_plus/pluto_grid_plus.dart';
 import 'package:pucextrato/app/modules/contas/controllers/contas_controller.dart';
 import 'package:pucextrato/app/modules/general/config.dart';
-import 'package:pluto_grid_plus_export/pluto_grid_plus_export.dart'
-    as pluto_grid_export;
 import 'package:pucextrato/app/modules/login/controllers/login_controller.dart';
 
 import '../controllers/saldo_projetos_controller.dart';
@@ -23,8 +18,6 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
 
   @override
   Widget build(BuildContext context) {
-    late PlutoGridStateManager stateManager;
-
     final List<PlutoColumn> columns = <PlutoColumn>[
       PlutoColumn(
         width: config.width(context, 80),
@@ -110,6 +103,9 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  width: 10,
+                ),
                 // config.wgtDataInicial(context),
                 config.wgtDataFinal(context),
                 Expanded(
@@ -153,9 +149,7 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
                           resizeMode: PlutoResizeMode.pushAndPull)),
                   columns: columns,
                   rows: rows.value,
-                  onLoaded: (PlutoGridOnLoadedEvent event) {
-                    stateManager = event.stateManager;
-                  },
+                  onLoaded: (PlutoGridOnLoadedEvent event) {},
                   onChanged: (PlutoGridOnChangedEvent event) {
                     print(event);
                   },

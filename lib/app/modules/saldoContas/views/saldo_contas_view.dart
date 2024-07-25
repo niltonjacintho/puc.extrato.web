@@ -7,7 +7,7 @@ import 'package:pucextrato/app/modules/general/config.dart';
 import '../controllers/saldo_contas_controller.dart';
 
 class SaldoContasView extends GetView<SaldoContasController> {
-  const SaldoContasView({Key? key}) : super(key: key);
+  const SaldoContasView({super.key});
   static ConfigController config = Get.put(ConfigController());
 
   @override
@@ -75,7 +75,7 @@ class SaldoContasView extends GetView<SaldoContasController> {
             stateManager = event.stateManager;
           },
           onChanged: (PlutoGridOnChangedEvent event) {
-            print(event);
+            null;
           },
           // configuration: const PlutoGridConfiguration(),
         ),

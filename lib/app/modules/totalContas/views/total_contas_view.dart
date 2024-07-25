@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/total_contas_controller.dart';
 
 class TotalContasView extends GetView<TotalContasController> {
-  const TotalContasView({Key? key}) : super(key: key);
+  const TotalContasView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +13,7 @@ class TotalContasView extends GetView<TotalContasController> {
         title: const Text('TotalContasView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'TotalContasView is working',
           style: TextStyle(fontSize: 20),

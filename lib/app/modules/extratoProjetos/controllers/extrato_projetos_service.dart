@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:pluto_grid_plus/pluto_grid_plus.dart';
 import 'package:pucextrato/app/modules/coordenador/controllers/coordenador_controller.dart';
 import 'package:pucextrato/app/modules/extratoProjetos/controllers/extrato_projetos_controller.dart';
@@ -18,7 +17,6 @@ class ExtratoProjetosService {
       Get.put(ExtratoProjetosController());
 
   getExtratoProjetosService() async {
-    final lista = [];
     final response = await dio.get(
         '${config.urlPadrao}/extratos/getExtrato/projeto/${projetos.idProjeto}/di/${config.inicioPeriodo.value.toIso8601String().substring(0, 10)}/df/${config.fimPeriodo.value.toIso8601String().substring(0, 10)}/pagina/1/pagina_tamanho/9999');
     List<dynamic>? data = jsonDecode(response.data[0])['tabExtrato'];
@@ -65,8 +63,6 @@ class ExtratoProjetosService {
 // http://139.82.24.10/MobServ/api/extratos/getExtratoExcel/projeto/15026/di/2024-06-24/df/2024-07-24/modo/2
 
   getExtratoExcel() async {
-    print(
-        '${config.urlPadrao}extratos/getExtratoExcel/projeto/${projetos.idProjeto}/di/${config.isoDate(config.inicioPeriodo.value)}/df/${config.isoDate(config.fimPeriodo.value)}/modo/2');
     var response = await dio.get(
         '${config.urlPadrao}extratos/getExtratoExcel/projeto/${projetos.idProjeto}/di/${config.isoDate(config.inicioPeriodo.value)}/df/${config.isoDate(config.fimPeriodo.value)}/modo/2');
     if (response.statusCode == 200) {

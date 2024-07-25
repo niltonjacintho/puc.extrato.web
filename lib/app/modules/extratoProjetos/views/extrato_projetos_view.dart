@@ -10,7 +10,7 @@ import '../controllers/extrato_projetos_controller.dart';
 
 class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
   // static TextEditingController jobRoleCtrl = TextEditingController();
-  ExtratoProjetosView({Key? key}) : super(key: key);
+  ExtratoProjetosView({super.key});
   final ProjetosController projetos = Get.put(ProjetosController());
   static ConfigController config = Get.put(ConfigController());
 
@@ -28,7 +28,6 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
       controller.getExtratoProjetosService();
     });
 
-    late PlutoGridStateManager stateManager;
 
     final columns = <PlutoColumn>[
       PlutoColumn(
@@ -116,7 +115,7 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                   flex: 2,
                   child: Obx(
                     () => Padding(
-                      padding: EdgeInsets.only(right: 30),
+                      padding: const EdgeInsets.only(right: 30),
                       child: DropDownTextField(
                         clearOption: true,
                         textFieldDecoration: const InputDecoration(
@@ -183,7 +182,6 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                   columns: columns,
                   rows: controller.rows.value,
                   onLoaded: (PlutoGridOnLoadedEvent event) {
-                    stateManager = event.stateManager;
                   },
                   onChanged: (PlutoGridOnChangedEvent event) {
                     null;
