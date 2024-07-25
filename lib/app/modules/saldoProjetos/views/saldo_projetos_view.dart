@@ -93,8 +93,9 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
                   child: Obx(
                     () => DropDownTextField(
                       clearOption: true,
-                      textFieldDecoration:
-                          const InputDecoration(label: Text('Escolha a conta')),
+                      textFieldDecoration: const InputDecoration(
+                          label: Text('Escolha a conta'),
+                          border: OutlineInputBorder()),
                       textFieldFocusNode: textFieldFocusNode,
                       searchFocusNode: searchFocusNode,
                       dropDownItemCount: 8,
@@ -130,20 +131,6 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
                                   contas.contaAtual.value,
                                   contas.contaDescricao.value,
                                   config.fimPeriodo.value);
-
-//http://139.82.24.10/MobServ/api/extratos/GetAnaliseContasExcel/coordenador/2247/conta/32006.000/data/2024-07-24
-
-//http://139.82.24.10/MobServ/download/excel/Saldo%20dos%20Projetos%20-%20COMPUTACAO%20GRAFICA.xls
-                              // var title =
-                              //     'Saldos dos projetos da conta - ${contas.contaAtual.trim()}';
-
-                              // var exported = const Utf8Encoder().convert(
-                              //     pluto_grid_export.PlutoGridExport.exportCSV(
-                              //         stateManager));
-                              // await FileSaver.instance.saveFile(
-                              //     name: "$title.csv",
-                              //     bytes: exported,
-                              //     ext: ".csv");
                             },
                             child: const Text('Exportar Excel'),
                           ),

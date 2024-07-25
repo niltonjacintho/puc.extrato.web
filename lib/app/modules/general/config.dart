@@ -36,7 +36,9 @@ class ConfigController extends GetxController {
           initialDate: inicioPeriodo.value,
           inputType: InputType.date, // This is crucial for selecting only date
           format: DateFormat('dd/MM/yyyy'),
-          decoration: const InputDecoration(labelText: 'Data Inicial'),
+          decoration: const InputDecoration(
+              labelText: 'Data Inicial', border: OutlineInputBorder()),
+
           onChanged: (val) {
             inicioPeriodo.value = val!;
           },
@@ -55,7 +57,8 @@ class ConfigController extends GetxController {
           initialDate: fimPeriodo.value,
           inputType: InputType.date, // This is crucial for selecting only date
           format: DateFormat('dd/MM/yyyy'),
-          decoration: const InputDecoration(labelText: 'Data Final'),
+          decoration: const InputDecoration(
+              labelText: 'Data Final', border: OutlineInputBorder()),
           onChanged: (val) {
             fimPeriodo.value = val!;
           },
@@ -69,7 +72,7 @@ class ConfigController extends GetxController {
       required String fileName,
       required String dataType}) async {
     try {
-      print('URL => $url');
+      final exten = fileName.contains('.xls') ? '' : '.xls';
       final response = await dio.get(Uri.parse(url).toString(),
           options: Options(
             responseType: ResponseType.bytes,
@@ -78,7 +81,8 @@ class ConfigController extends GetxController {
       final anchor = universal_html.AnchorElement(
           href: 'data:application/octet-stream;base64,$base64')
         ..target = 'blank';
-      anchor.download = '${fileName.trim()}.xls';
+
+      anchor.download = '${fileName.trim()}&extren';
       universal_html.document.body?.append(anchor);
       anchor.click();
       anchor.remove();

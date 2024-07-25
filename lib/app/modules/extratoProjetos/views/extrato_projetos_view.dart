@@ -1,18 +1,11 @@
-import 'dart:convert';
-
 import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
-import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:pluto_grid_plus/pluto_grid_plus.dart';
 import 'package:pucextrato/app/modules/general/config.dart';
 import 'package:pucextrato/app/modules/projetos/controllers/projetos_controller.dart';
-import 'package:pluto_grid_plus_export/pluto_grid_plus_export.dart'
-    as pluto_grid_export;
 import '../controllers/extrato_projetos_controller.dart';
 
 class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
@@ -122,25 +115,32 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                 Expanded(
                   flex: 2,
                   child: Obx(
-                    () => DropDownTextField(
-                      clearOption: true,
-                      textFieldDecoration: const InputDecoration(
-                          label: Text('Escolha o projeto')),
-                      textFieldFocusNode: textFieldFocusNode,
-                      searchFocusNode: searchFocusNode,
-                      dropDownItemCount: 8,
-                      searchShowCursor: false,
-                      enableSearch: true,
-                      searchKeyboardType: TextInputType.text,
-                      dropDownList: projetos.dropDownList,
-                      onChanged: (val) {
-                        projetos.idProjeto.value = val.value;
-                        projetos.nome.value = val.name;
-                      },
+                    () => Padding(
+                      padding: EdgeInsets.only(right: 30),
+                      child: DropDownTextField(
+                        clearOption: true,
+                        textFieldDecoration: const InputDecoration(
+                            label: Text('Escolha o projeto'),
+                            border: OutlineInputBorder()),
+                        textFieldFocusNode: textFieldFocusNode,
+                        searchFocusNode: searchFocusNode,
+                        dropDownItemCount: 8,
+                        searchShowCursor: false,
+                        enableSearch: true,
+                        searchKeyboardType: TextInputType.text,
+                        dropDownList: projetos.dropDownList,
+                        onChanged: (val) {
+                          projetos.idProjeto.value = val.value;
+                          projetos.nome.value = val.name;
+                        },
+                      ),
                     ),
                   ),
                 ),
                 config.wgtDataInicial(context),
+                const SizedBox(
+                  width: 10,
+                ),
                 config.wgtDataFinal(context),
                 Expanded(
                   flex: 1,
@@ -156,23 +156,7 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                         children: [
                           ButtonBarEntry(
                             onTap: () async {
-                              final url =
-                                  '${config.urlPadrao}/extratos/getExtratoExcel/projeto/15026/di/${config.isoDate(config.inicioPeriodo.value)}/df/${config.isoDate(config.fimPeriodo.value)}/modo/2';
-
-                              config.downloadFile(
-                                  url: url,
-                                  fileName: projetos.nome.value.trim(),
-                                  dataType: "application/vnd.ms-excel");
-                              // var title =
-                              //     'Saldos dos projetos ${projetos.nome.value.trim()}';
-
-                              // var exported = const Utf8Encoder().convert(
-                              //     pluto_grid_export.PlutoGridExport.exportCSV(
-                              //         stateManager));
-                              // await FileSaver.instance.saveFile(
-                              //     name: "$title.csv",
-                              //     bytes: exported,
-                              //     ext: ".csv");
+                              controller.getProjetoExcel();
                             },
                             child: const Text('Exportar Excel'),
                           ),

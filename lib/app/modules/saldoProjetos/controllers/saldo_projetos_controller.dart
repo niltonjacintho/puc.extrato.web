@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:pluto_grid_plus/pluto_grid_plus.dart';
+import 'package:pucextrato/app/modules/general/config.dart';
 import 'package:pucextrato/app/modules/saldoProjetos/controllers/saldo_projetos_service.dart';
 import 'package:pucextrato/app/modules/saldoProjetos/model/saldo_projeto_model.dart';
 
 class SaldoProjetosController extends GetxController {
   SaldoProjetosService saldoProjetosService = Get.put(SaldoProjetosService());
+  ConfigController configController = Get.put(ConfigController());
 
   final _listExtrato = <SaldoProjetoModel>[].obs;
   RxList<SaldoProjetoModel> get listaExtrato => _listExtrato;
@@ -26,9 +28,7 @@ class SaldoProjetosController extends GetxController {
   getExtratoExcel(
       String coordenador, String conta, String nomeConta, DateTime data) async {
     nomeConta = nomeConta.split('-')[1].trim();
-    String dt =
-        '${data.year}-${data.month.toString().padLeft(2, '0')}-${data.day.toString().padLeft(2, '0')}';
-
+    String dt = configController.isoDate(data);
     await saldoProjetosService.getExcel(coordenador, conta, nomeConta, dt);
   }
 
