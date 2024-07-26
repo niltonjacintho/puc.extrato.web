@@ -13,9 +13,10 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
   ExtratoProjetosView({super.key});
   final ProjetosController projetos = Get.put(ProjetosController());
   static ConfigController config = Get.put(ConfigController());
-
+  ExtratoProjetosController extrato = Get.put(ExtratoProjetosController());
   @override
   Widget build(BuildContext context) {
+    extrato.rows.clear(); // controller.ex
     projetos.idProjeto.listen((p) {
       controller.getExtratoProjetosService();
     });
@@ -27,7 +28,6 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
     config.inicioPeriodo.listen((p0) {
       controller.getExtratoProjetosService();
     });
-
 
     final columns = <PlutoColumn>[
       PlutoColumn(
@@ -123,6 +123,9 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                             border: OutlineInputBorder()),
                         textFieldFocusNode: textFieldFocusNode,
                         searchFocusNode: searchFocusNode,
+                        searchDecoration: const InputDecoration(
+                            label: Text(
+                                'Entre com um nome ou selecione na lista')),
                         dropDownItemCount: 8,
                         searchShowCursor: false,
                         enableSearch: true,
@@ -181,8 +184,7 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                           resizeMode: PlutoResizeMode.pushAndPull)),
                   columns: columns,
                   rows: controller.rows.value,
-                  onLoaded: (PlutoGridOnLoadedEvent event) {
-                  },
+                  onLoaded: (PlutoGridOnLoadedEvent event) {},
                   onChanged: (PlutoGridOnChangedEvent event) {
                     null;
                   },

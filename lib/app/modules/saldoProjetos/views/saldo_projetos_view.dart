@@ -59,7 +59,7 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
 
     FocusNode textFieldFocusNode = FocusNode();
     FocusNode searchFocusNode = FocusNode();
-
+    controller.rows.clear();
     contas.contaAtual.listen((p0) {
       controller.getExtrato();
     });
@@ -95,6 +95,9 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
                       searchShowCursor: false,
                       enableSearch: true,
                       searchKeyboardType: TextInputType.text,
+                      searchDecoration: const InputDecoration(
+                          label:
+                              Text('Entre com um nome ou selecione na lista')),
                       dropDownList: contas.dropDownList(),
                       onChanged: (val) {
                         contas.contaAtual.value = val.value;

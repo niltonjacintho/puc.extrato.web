@@ -10,8 +10,6 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../controllers/login_controller.dart';
 
-
-
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
   static Estilos estilo = Estilos.instance;
@@ -71,7 +69,8 @@ class LoginView extends GetView<LoginController> {
                                   }
                                   return null;
                                 },
-                                onChanged: (value) => controller.usuario.value = value,
+                                onChanged: (value) =>
+                                    controller.usuario.value = value,
                               ),
                               Obx(
                                 () => TextFormField(
@@ -94,7 +93,8 @@ class LoginView extends GetView<LoginController> {
                                     }
                                     return null;
                                   },
-                                  onChanged: (value) => controller.senha.value = value,
+                                  onChanged: (value) =>
+                                      controller.senha.value = value,
                                 ),
                               ),
                               ButtonBar(
@@ -106,7 +106,17 @@ class LoginView extends GetView<LoginController> {
                                     },
                                     label: const Text('Cancelar'),
                                     icon: const Icon(Icons.cancel),
-                                    style: editors.buttonStyle(botao.error),
+                                    style: ElevatedButton.styleFrom(
+                                      foregroundColor: Colors.white,
+                                      textStyle: const TextStyle(
+                                          fontSize: 20, color: Colors.white),
+                                      backgroundColor: Colors.red,
+                                      minimumSize: const Size(200, 40),
+                                      fixedSize: const Size(200, 40),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
                                   ),
                                   // const Spacer(),
                                   ElevatedButton.icon(

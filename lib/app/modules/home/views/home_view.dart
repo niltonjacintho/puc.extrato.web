@@ -40,7 +40,7 @@ class HomeView extends GetView<HomeController> {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: const Text('Home'),
+              child: const Text('Início'),
             ),
             //  const Spacer(),
             const SizedBox(

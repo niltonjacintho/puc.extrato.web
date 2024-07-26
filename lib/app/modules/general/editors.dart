@@ -9,13 +9,13 @@ class Editors extends StatefulWidget {
     Color result = const Color.fromARGB(255, 3, 45, 80);
     switch (value) {
       case botao.error:
-        result = const Color.fromARGB(255, 82, 8, 2);
+        result = Color.fromARGB(255, 240, 33, 15);
         break;
       case botao.normal:
-        result = const Color.fromARGB(255, 4, 31, 53);
+        result = Color.fromARGB(255, 56, 214, 16);
         break;
       default:
-        result = const Color.fromARGB(255, 3, 45, 80);
+        result = Color.fromARGB(255, 13, 109, 10);
     }
     return result;
   }
@@ -51,8 +51,8 @@ class Editors extends StatefulWidget {
     return ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 20),
       backgroundColor: _getCor(tipo),
-      minimumSize: const Size(200, 80),
-      fixedSize: const Size(200, 80),
+      minimumSize: const Size(200, 40),
+      fixedSize: const Size(200, 40),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),

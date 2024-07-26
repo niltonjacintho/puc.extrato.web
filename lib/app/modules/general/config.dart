@@ -30,6 +30,7 @@ class ConfigController extends GetxController {
         flex: 1,
         child: FormBuilderDateTimePicker(
           name: 'dt_inicio',
+          locale: const Locale('pt', 'BR'),
           initialEntryMode: DatePickerEntryMode.calendar,
           initialDate: inicioPeriodo.value,
           inputType: InputType.date, // This is crucial for selecting only date
@@ -51,6 +52,7 @@ class ConfigController extends GetxController {
         flex: 1,
         child: FormBuilderDateTimePicker(
           name: 'dt_final',
+          locale: const Locale('pt', 'BR'),
           initialEntryMode: DatePickerEntryMode.calendar,
           initialDate: fimPeriodo.value,
           inputType: InputType.date, // This is crucial for selecting only date
