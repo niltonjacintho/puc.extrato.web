@@ -8,10 +8,18 @@ class SaldoContasController extends GetxController {
   CoordenadorController coordenadorController =
       Get.put(CoordenadorController());
 
-  static final RxList<PlutoRow> _rows = RxList<PlutoRow>([]);
+  static RxList<PlutoRow> _rows = RxList<PlutoRow>([]);
 
   RxList<PlutoRow> get rows {
     return _rows;
+  }
+
+  set rows(RxList<PlutoRow> value) {
+    _rows.value = value;
+  }
+
+  clearRows() {
+    _rows = RxList<PlutoRow>([]);
   }
 
   bool get hasRows {

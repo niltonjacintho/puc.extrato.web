@@ -15,6 +15,11 @@ class ConfigController extends GetxController {
       DateTime.now().subtract(const Duration(days: 30)).obs;
   Rx<DateTime> fimPeriodo = DateTime.now().obs;
 
+  inicializarDatas() {
+    inicioPeriodo = DateTime.now().subtract(const Duration(days: 30)).obs;
+    fimPeriodo = DateTime.now().obs;
+  }
+
   double width(BuildContext context, double perc) {
     double screenWidth = MediaQuery.of(context).size.width;
     return screenWidth * (perc / 100);

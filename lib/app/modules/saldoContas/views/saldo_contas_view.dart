@@ -13,6 +13,8 @@ class SaldoContasView extends GetView<SaldoContasController> {
   @override
   Widget build(BuildContext context) {
     late PlutoGridStateManager stateManager;
+    config.inicializarDatas();
+    controller.clearRows();
 
     final List<PlutoColumn> columns = <PlutoColumn>[
       PlutoColumn(

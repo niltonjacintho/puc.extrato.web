@@ -60,6 +60,7 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
     FocusNode textFieldFocusNode = FocusNode();
     FocusNode searchFocusNode = FocusNode();
     controller.rows.clear();
+    config.inicializarDatas();
     contas.contaAtual.listen((p0) {
       controller.getExtrato();
     });

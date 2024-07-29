@@ -16,7 +16,9 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
   ExtratoProjetosController extrato = Get.put(ExtratoProjetosController());
   @override
   Widget build(BuildContext context) {
-    extrato.rows.clear(); // controller.ex
+    extrato.rows.clear();
+    config.inicializarDatas();
+    // controller.ex
     projetos.idProjeto.listen((p) {
       controller.getExtratoProjetosService();
     });
