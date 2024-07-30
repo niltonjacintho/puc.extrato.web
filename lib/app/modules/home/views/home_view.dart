@@ -26,7 +26,7 @@ class HomeView extends GetView<HomeController> {
       child: Scaffold(
         appBar: AppBar(
           title:
-              const Text('Fundação Padre Leonel Franca - Controle de Projetos'),
+              const Text('Fundação Padre Leonel Franca - Controle de Projetos ${config.}'),
           actions: [
             ElevatedButton(
               onPressed: () {

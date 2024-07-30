@@ -11,6 +11,9 @@ class ConfigController extends GetxController {
   Dio dio = Dio();
   String urlPadrao = 'http://139.82.24.10/MobServ/api/';
   String urlPadraoBase = 'http://139.82.24.10/';
+  String _NomeModuloAtual = '';
+  String get NomeModuloAtual => _NomeModuloAtual;
+
   Rx<DateTime> inicioPeriodo =
       DateTime.now().subtract(const Duration(days: 30)).obs;
   Rx<DateTime> fimPeriodo = DateTime.now().obs;
@@ -38,6 +41,7 @@ class ConfigController extends GetxController {
           locale: const Locale('pt', 'BR'),
           initialEntryMode: DatePickerEntryMode.calendar,
           initialDate: inicioPeriodo.value,
+          initialValue: inicioPeriodo.value,
           inputType: InputType.date, // This is crucial for selecting only date
           format: DateFormat('dd/MM/yyyy'),
           decoration: const InputDecoration(
@@ -60,6 +64,7 @@ class ConfigController extends GetxController {
           locale: const Locale('pt', 'BR'),
           initialEntryMode: DatePickerEntryMode.calendar,
           initialDate: fimPeriodo.value,
+          initialValue: fimPeriodo.value,
           inputType: InputType.date, // This is crucial for selecting only date
           format: DateFormat('dd/MM/yyyy'),
           decoration: const InputDecoration(
