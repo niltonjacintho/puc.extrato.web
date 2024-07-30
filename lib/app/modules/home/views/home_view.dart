@@ -25,8 +25,8 @@ class HomeView extends GetView<HomeController> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title:
-              const Text('Fundação Padre Leonel Franca - Controle de Projetos ${config.}'),
+          title: const Text(
+              'Fundação Padre Leonel Franca - Controle de Projetos '),
           actions: [
             ElevatedButton(
               onPressed: () {
@@ -105,9 +105,12 @@ class HomeView extends GetView<HomeController> {
                 width: double.infinity,
                 //    height: double.infinity,
                 color: const Color.fromARGB(255, 245, 243, 243),
-                child: Image.asset(
-                  './assets/images/logo.jpg',
-                  fit: BoxFit.fill,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 30, bottom: 40),
+                  child: Image.asset(
+                    './assets/images/logo.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               Container(

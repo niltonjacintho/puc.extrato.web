@@ -15,6 +15,7 @@ class SaldoContasView extends GetView<SaldoContasController> {
     late PlutoGridStateManager stateManager;
     config.inicializarDatas();
     controller.clearRows();
+    controller.getExtrato();
 
     final List<PlutoColumn> columns = <PlutoColumn>[
       PlutoColumn(
@@ -62,44 +63,46 @@ class SaldoContasView extends GetView<SaldoContasController> {
       controller.getExtrato();
     });
 
-    return WillPopScope(
-      onWillPop: () {
-        return controller.getExtrato();
-      },
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              SizedBox(height: 60, child: config.wgtDataFinal(context)),
-              SizedBox(
-                height: MediaQuery.of(context).size.height - 200,
-                child: Obx(
-                  () => PlutoGrid(
-                    noRowsWidget: const Center(
-                      child: Text('Não encontrei dados para o período ativo '),
-                    ),
-                    configuration: const PlutoGridConfiguration(
-                        columnSize: PlutoGridColumnSizeConfig(
-                            autoSizeMode: PlutoAutoSizeMode.scale,
-                            resizeMode: PlutoResizeMode.pushAndPull)),
-                    columns: columns,
-                    rows: rows.value,
-                    onLoaded: (PlutoGridOnLoadedEvent event) {
-                      stateManager = event.stateManager;
-                    },
-                    onChanged: (PlutoGridOnChangedEvent event) {
-                      null;
-                    },
-                    // configuration: const PlutoGridConfiguration(),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                config.wgtDataFinal(context),
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height - 200,
+              child: Obx(
+                () => PlutoGrid(
+                  noRowsWidget: const Center(
+                    child: Text('Não encontrei dados para o período ativo '),
                   ),
+                  configuration: const PlutoGridConfiguration(
+                      columnSize: PlutoGridColumnSizeConfig(
+                          autoSizeMode: PlutoAutoSizeMode.scale,
+                          resizeMode: PlutoResizeMode.pushAndPull)),
+                  columns: columns,
+                  rows: rows.value,
+                  onLoaded: (PlutoGridOnLoadedEvent event) {
+                    stateManager = event.stateManager;
+                  },
+                  onChanged: (PlutoGridOnChangedEvent event) {
+                    null;
+                  },
+                  // configuration: const PlutoGridConfiguration(),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        //),
       ),
+      //),
+      //  ),
     );
   }
 }

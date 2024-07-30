@@ -11,8 +11,7 @@ class ConfigController extends GetxController {
   Dio dio = Dio();
   String urlPadrao = 'http://139.82.24.10/MobServ/api/';
   String urlPadraoBase = 'http://139.82.24.10/';
-  String _NomeModuloAtual = '';
-  String get NomeModuloAtual => _NomeModuloAtual;
+  String nomeModuloAtual = '';
 
   Rx<DateTime> inicioPeriodo =
       DateTime.now().subtract(const Duration(days: 30)).obs;

@@ -18,6 +18,7 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
   Widget build(BuildContext context) {
     extrato.rows.clear();
     config.inicializarDatas();
+    config.nomeModuloAtual = 'Extrato de Projetos';
     // controller.ex
     projetos.idProjeto.listen((p) {
       controller.getExtratoProjetosService();

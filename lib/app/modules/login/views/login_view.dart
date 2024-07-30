@@ -30,7 +30,7 @@ class LoginView extends GetView<LoginController> {
                   const Expanded(
                     flex: 2,
                     child: Image(
-                      image: AssetImage('./assets/images/logo.jpg'),
+                      image: AssetImage('./assets/images/logo.png'),
                       width: 500,
                       height: 500,
                     ),
