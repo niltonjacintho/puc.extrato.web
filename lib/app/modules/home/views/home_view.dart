@@ -28,67 +28,71 @@ class HomeView extends GetView<HomeController> {
           title: const Text(
               'Fundação Padre Leonel Franca - Controle de Projetos '),
           actions: [
-            ElevatedButton(
-              onPressed: () {
-                tabIndex.value = 0;
-                pageController.jumpToPage(tabIndex.value);
-              },
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(largura * 0.1, 30),
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    tabIndex.value = 0;
+                    pageController.jumpToPage(tabIndex.value);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(largura * 0.1, 30),
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text('Início'),
                 ),
-              ),
-              child: const Text('Início'),
-            ),
-            //  const Spacer(),
-            const SizedBox(
-              width: 5,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                tabIndex.value = 1;
-                pageController.jumpToPage(tabIndex.value);
-              },
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(largura * 0.1, 30),
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                //  const Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    tabIndex.value = 1;
+                    pageController.jumpToPage(tabIndex.value);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(largura * 0.1, 30),
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text('Extrato'),
                 ),
-              ),
-              child: const Text('Extrato'),
-            ),
-            //  const Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                tabIndex.value = 2;
-                pageController.jumpToPage(tabIndex.value);
-              },
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(largura * 0.1, 30),
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                //  const Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    tabIndex.value = 2;
+                    pageController.jumpToPage(tabIndex.value);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(largura * 0.1, 30),
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text('Saldo dos projetos'),
                 ),
-              ),
-              child: const Text('Saldo dos projetos'),
-            ),
-            //   const Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                tabIndex.value = 3;
-                pageController.jumpToPage(tabIndex.value);
-              },
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(largura * 0.1, 30),
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                //   const Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    tabIndex.value = 3;
+                    pageController.jumpToPage(tabIndex.value);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(largura * 0.1, 30),
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text('Saldo das contas'),
                 ),
-              ),
-              child: const Text('Saldo das contas'),
+              ],
             ),
           ],
         ),
