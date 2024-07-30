@@ -63,10 +63,11 @@ class ExtratoProjetosService {
 // http://139.82.24.10/MobServ/api/extratos/getExtratoExcel/projeto/15026/di/2024-06-24/df/2024-07-24/modo/2
 
   getExtratoExcel() async {
+    print(projetos);
     var response = await dio.get(
         '${config.urlPadrao}extratos/getExtratoExcel/projeto/${projetos.idProjeto}/di/${config.isoDate(config.inicioPeriodo.value)}/df/${config.isoDate(config.fimPeriodo.value)}/modo/2');
     if (response.statusCode == 200) {
-      String jsonObject='';
+      String jsonObject = '';
       try {
         jsonObject = jsonDecode(response.data[0])['tab1'][0]["nomeArquivo"];
       } catch (e) {

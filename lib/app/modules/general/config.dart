@@ -13,6 +13,19 @@ class ConfigController extends GetxController {
   String urlPadraoBase = 'http://139.82.24.10/';
   String nomeModuloAtual = '';
 
+  double heigth(BuildContext context, {int percent = 0, int reducao = 0}) {
+    double result = 0;
+    var med = MediaQuery.of(context).size.height;
+    if (percent != 0) {
+      result = (med / 100) * percent;
+    } else {
+      if (reducao != 0) {
+        result = med - reducao;
+      }
+    }
+    return result;
+  }
+
   Rx<DateTime> inicioPeriodo =
       DateTime.now().subtract(const Duration(days: 30)).obs;
   Rx<DateTime> fimPeriodo = DateTime.now().obs;

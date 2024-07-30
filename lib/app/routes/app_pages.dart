@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:get/get.dart';
 
 import '../modules/contas/bindings/contas_binding.dart';
@@ -8,6 +6,8 @@ import '../modules/coordenador/bindings/coordenador_binding.dart';
 import '../modules/coordenador/views/coordenador_view.dart';
 import '../modules/dadosCoordenador/bindings/dados_coordenador_binding.dart';
 import '../modules/dadosCoordenador/views/dados_coordenador_view.dart';
+import '../modules/extratoMulti/bindings/extrato_multi_binding.dart';
+import '../modules/extratoMulti/views/extrato_multi_view.dart';
 import '../modules/extratoProjetos/bindings/extrato_projetos_binding.dart';
 import '../modules/extratoProjetos/views/extrato_projetos_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -22,6 +22,8 @@ import '../modules/saldoProjetos/bindings/saldo_projetos_binding.dart';
 import '../modules/saldoProjetos/views/saldo_projetos_view.dart';
 import '../modules/totalContas/bindings/total_contas_binding.dart';
 import '../modules/totalContas/views/total_contas_view.dart';
+
+// ignore_for_file: constant_identifier_names
 
 part 'app_routes.dart';
 
@@ -81,6 +83,11 @@ class AppPages {
       name: _Paths.SALDO_CONTAS,
       page: () => const SaldoContasView(),
       binding: SaldoContasBinding(),
+    ),
+    GetPage(
+      name: _Paths.EXTRATO_MULTI,
+      page: () =>  ExtratoMultiView(),
+      binding: ExtratoMultiBinding(),
     ),
   ];
 }

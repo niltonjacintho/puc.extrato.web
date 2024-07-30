@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pucextrato/app/modules/extratoMulti/views/extrato_multi_view.dart';
 import 'package:pucextrato/app/modules/extratoProjetos/views/extrato_projetos_view.dart';
 import 'package:pucextrato/app/modules/general/config.dart';
 import 'package:pucextrato/app/modules/general/estilos.dart';
@@ -18,7 +19,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     var tabIndex = 0.obs;
     final pageKey = GlobalKey();
-
+//TODO: REVER ESTE GLOBAL KEY
     late PageController pageController;
     double largura = MediaQuery.of(context).size.width;
     pageController = PageController(initialPage: tabIndex.value);
@@ -28,10 +29,8 @@ class HomeView extends GetView<HomeController> {
           title: const Text(
               'Fundação Padre Leonel Franca - Controle de Projetos '),
           actions: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.baseline,
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.end,
               children: [
                 ElevatedButton(
                   onPressed: () {
@@ -61,6 +60,20 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                   child: const Text('Extrato'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    tabIndex.value = 4;
+                    pageController.jumpToPage(tabIndex.value);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(largura * 0.1, 30),
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text('Multiplos'),
                 ),
                 //  const Spacer(),
                 ElevatedButton(
@@ -100,7 +113,7 @@ class HomeView extends GetView<HomeController> {
           height: MediaQuery.of(context).size.height - 50,
           child: PageView(
             controller: pageController,
-            key: pageKey,
+            //  key: pageKey,
             onPageChanged: (v) {
               tabIndex.value = v;
             },
@@ -132,6 +145,11 @@ class HomeView extends GetView<HomeController> {
                   //     height: double.infinity,
                   color: Colors.blue,
                   child: const SaldoContasView()),
+              Container(
+                  width: double.infinity,
+                  //     height: double.infinity,
+                  color: Colors.blue,
+                  child: ExtratoMultiView()),
             ],
           ),
         ),
