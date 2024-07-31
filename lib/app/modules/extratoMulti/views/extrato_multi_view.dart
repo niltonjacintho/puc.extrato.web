@@ -8,7 +8,6 @@ import 'package:pluto_grid_plus/pluto_grid_plus.dart';
 import 'package:pucextrato/app/modules/extratoProjetos/controllers/extrato_projetos_controller.dart';
 import 'package:pucextrato/app/modules/general/config.dart';
 import 'package:pucextrato/app/modules/projetos/controllers/projetos_controller.dart';
-import 'package:pucextrato/app/modules/projetos/model/projeto_model.dart';
 
 import '../controllers/extrato_multi_controller.dart';
 
@@ -58,14 +57,15 @@ class ExtratoMultiView extends GetView<ExtratoMultiController> {
                             projetos.idProjeto.value = p.value;
                             extrato.getProjetoExcel();
                           }
+                          searchController.clearAllPickedItems();
+                          searchController.clearSearchField();
+                          projetosSelecionados = [];
                         },
                         child: const Text('Exportar Excel'),
                       ),
                     ],
                   ),
                 ),
-                // ),
-                //  ),
               ],
             ),
             MultipleSearchSelection<DropDownValueModel>(

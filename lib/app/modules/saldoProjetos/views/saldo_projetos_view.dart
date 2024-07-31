@@ -11,7 +11,7 @@ import 'package:pucextrato/app/modules/login/controllers/login_controller.dart';
 import '../controllers/saldo_projetos_controller.dart';
 
 class SaldoProjetosView extends GetView<SaldoProjetosController> {
-  const SaldoProjetosView({Key? key}) : super(key: key);
+  const SaldoProjetosView({super.key});
   static ContasController contas = Get.put(ContasController());
   static ConfigController config = Get.put(ConfigController());
   static LoginController login = Get.put(LoginController());
