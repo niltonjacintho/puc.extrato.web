@@ -70,7 +70,7 @@ class ExtratoMultiView extends GetView<ExtratoMultiController> {
             ),
             MultipleSearchSelection<DropDownValueModel>(
               hintText: 'Digite o nome do projeto ou selecione na lista abaixo',
-
+              controller: searchController,
               searchField: TextField(
                 decoration: InputDecoration(
                   hintText: 'Procurar projetos',
