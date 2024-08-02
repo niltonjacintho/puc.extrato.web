@@ -19,6 +19,7 @@ class HomeController extends GetxController {
       final response = await dio.get(Uri.parse(url).toString(),
           options: Options(
             responseType: ResponseType.bytes,
+            
           ));
       final base64 = base64Encode(response.data);
       final anchor = universal_html.AnchorElement(
