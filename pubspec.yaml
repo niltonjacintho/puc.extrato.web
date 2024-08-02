@@ -18,7 +18,8 @@ dependencies:
   intl: any
   dropdown_textfield: ^1.0.8
   pluto_grid_plus: ^8.4.2
-  pluto_grid_plus_export: ^1.0.4
+  # pluto_grid_plus_export: ^1.0.4
+  pluto_menu_bar: ^3.0.1
   animated_button_bar: ^1.0.0
   top_snackbar_flutter: ^3.0.0+1
   file_saver: ^0.2.1

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:pluto_menu_bar/pluto_menu_bar.dart';
 import 'package:pucextrato/app/modules/extratoMulti/views/extrato_multi_view.dart';
 import 'package:pucextrato/app/modules/extratoProjetos/views/extrato_projetos_view.dart';
 import 'package:pucextrato/app/modules/general/config.dart';
@@ -17,141 +18,121 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    var tabIndex = 0.obs;
-    final pageKey = GlobalKey();
-//TODO: REVER ESTE GLOBAL KEY
     late PageController pageController;
     double largura = MediaQuery.of(context).size.width;
+    var tabIndex = 0.obs;
     pageController = PageController(initialPage: tabIndex.value);
+    late final List<PlutoMenuItem> orangeHoverMenus;
+
+    List<PlutoMenuItem> _makeMenus(BuildContext context) {
+      return [
+        PlutoMenuItem(
+          title: 'Início',
+          icon: Icons.home,
+          onTap: () =>
+              {tabIndex.value = 0, pageController.jumpToPage(tabIndex.value)},
+        ),
+        PlutoMenuItem(
+          title: 'Extrato Projetos',
+          icon: Icons.account_balance_rounded,
+          onTap: () =>
+              {tabIndex.value = 1, pageController.jumpToPage(tabIndex.value)},
+        ),
+        PlutoMenuItem(
+          title: 'Multiplos Extratos',
+          icon: Icons.account_tree_rounded,
+          onTap: () =>
+              {tabIndex.value = 4, pageController.jumpToPage(tabIndex.value)},
+        ),
+        PlutoMenuItem(
+          title: 'Saldo dos projetos',
+          icon: Icons.analytics_rounded,
+          onTap: () =>
+              {tabIndex.value = 2, pageController.jumpToPage(tabIndex.value)},
+        ),
+        PlutoMenuItem(
+          title: 'Saldo das contas',
+          icon: Icons.attach_money_rounded,
+          onTap: () =>
+              {tabIndex.value = 3, pageController.jumpToPage(tabIndex.value)},
+        ),
+        PlutoMenuItem(
+            title: 'Baixar APP',
+            icon: Icons.android_rounded,
+            onTap: () => {controller.getApk()}),
+      ];
+    }
+
+    orangeHoverMenus = _makeMenus(context);
+
+    final pageKey = GlobalKey();
+//TODO: REVER ESTE GLOBAL KEY
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-              'Fundação Padre Leonel Franca - Controle de Projetos '),
-          actions: [
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    tabIndex.value = 0;
-                    pageController.jumpToPage(tabIndex.value);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(largura * 0.1, 30),
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+        body: Column(
+          children: [
+            const Text(
+              'Fundação Padre Leonel Franca - Controle de Projetos ',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            PlutoMenuBar(
+              mode: PlutoMenuBarMode.hover,
+              backgroundColor: Color(0xff00005a),
+              itemStyle: const PlutoMenuItemStyle(
+                activatedColor: Colors.white,
+                indicatorColor: Colors.deepOrange,
+                textStyle: TextStyle(color: Colors.white),
+                iconColor: Colors.white,
+                moreIconColor: Colors.white,
+                enableSelectedTopMenu: true,
+              ),
+              menus: orangeHoverMenus,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height - 100,
+              child: PageView(
+                controller: pageController,
+                //  key: pageKey,
+                onPageChanged: (v) {
+                  tabIndex.value = v;
+                },
+                children: [
+                  Container(
+                    width: double.infinity,
+                    //    height: double.infinity,
+                    color: const Color.fromARGB(255, 245, 243, 243),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 30, bottom: 40),
+                      child: Image.asset(
+                        './assets/images/logo.png',
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
-                  child: const Text('Início'),
-                ),
-                //  const Spacer(),
-                ElevatedButton(
-                  onPressed: () {
-                    tabIndex.value = 1;
-                    pageController.jumpToPage(tabIndex.value);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(largura * 0.1, 30),
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+                  Container(
+                    //     height: double.infinity,
+                    color: Colors.green,
+                    child: ExtratoProjetosView(),
                   ),
-                  child: const Text('Extrato'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    tabIndex.value = 4;
-                    pageController.jumpToPage(tabIndex.value);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(largura * 0.1, 30),
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Text('Multiplos'),
-                ),
-                //  const Spacer(),
-                ElevatedButton(
-                  onPressed: () {
-                    tabIndex.value = 2;
-                    pageController.jumpToPage(tabIndex.value);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(largura * 0.1, 30),
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Text('Saldo dos projetos'),
-                ),
-                //   const Spacer(),
-                ElevatedButton(
-                  onPressed: () {
-                    tabIndex.value = 3;
-                    pageController.jumpToPage(tabIndex.value);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: Size(largura * 0.1, 30),
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: const Text('Saldo das contas'),
-                ),
-              ],
+                  Container(
+                      width: double.infinity,
+                      //       height: double.infinity,
+                      color: Colors.blue,
+                      child: const SaldoProjetosView()),
+                  Container(
+                      width: double.infinity,
+                      //     height: double.infinity,
+                      color: Colors.blue,
+                      child: const SaldoContasView()),
+                  Container(
+                      width: double.infinity,
+                      //     height: double.infinity,
+                      color: Colors.blue,
+                      child: ExtratoMultiView()),
+                ],
+              ),
             ),
           ],
-        ),
-        body: SizedBox(
-          height: MediaQuery.of(context).size.height - 50,
-          child: PageView(
-            controller: pageController,
-            //  key: pageKey,
-            onPageChanged: (v) {
-              tabIndex.value = v;
-            },
-            children: [
-              Container(
-                width: double.infinity,
-                //    height: double.infinity,
-                color: const Color.fromARGB(255, 245, 243, 243),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30, bottom: 40),
-                  child: Image.asset(
-                    './assets/images/logo.png',
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-              Container(
-                //     height: double.infinity,
-                color: Colors.green,
-                child: ExtratoProjetosView(),
-              ),
-              Container(
-                  width: double.infinity,
-                  //       height: double.infinity,
-                  color: Colors.blue,
-                  child: const SaldoProjetosView()),
-              Container(
-                  width: double.infinity,
-                  //     height: double.infinity,
-                  color: Colors.blue,
-                  child: const SaldoContasView()),
-              Container(
-                  width: double.infinity,
-                  //     height: double.infinity,
-                  color: Colors.blue,
-                  child: ExtratoMultiView()),
-            ],
-          ),
         ),
       ),
     );
