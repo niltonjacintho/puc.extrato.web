@@ -15,6 +15,7 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   static Estilos estilo = Estilos.instance;
   static ConfigController config = Get.put(ConfigController());
+   static HomeController home = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class HomeView extends GetView<HomeController> {
         PlutoMenuItem(
             title: 'Baixar APP',
             icon: Icons.android_rounded,
-            onTap: () => {controller.getApk()}),
+            onTap: () => {home.getApk()}),
       ];
     }
 
