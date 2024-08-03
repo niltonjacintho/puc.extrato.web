@@ -16,7 +16,7 @@ class LoginView extends GetView<LoginController> {
   static Editors editors = const Editors();
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey();
+    final formKey = GlobalKey();
     var obscureText = true.obs;
 
     return Scaffold(
@@ -54,7 +54,7 @@ class LoginView extends GetView<LoginController> {
                       Padding(
                         padding: const EdgeInsets.all(80.0),
                         child: Form(
-                          key: _formKey,
+                          key: formKey,
                           child: Wrap(
                             spacing: 30,
                             runSpacing: 30,
@@ -146,7 +146,7 @@ class LoginView extends GetView<LoginController> {
                                     },
                                     label: const Text('Entrar'),
                                     icon: const Icon(Icons.cancel),
-                                    style: editors.buttonStyle(botao.normal),
+                                    style: editors.buttonStyle(Botao.normal),
                                   ),
                                 ],
                               ),

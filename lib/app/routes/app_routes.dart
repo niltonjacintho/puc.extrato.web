@@ -15,6 +15,7 @@ abstract class Routes {
   static const PROJETOS = _Paths.PROJETOS;
   static const CONTAS = _Paths.CONTAS;
   static const SALDO_CONTAS = _Paths.SALDO_CONTAS;
+  static const EXTRATO_MULTI = _Paths.EXTRATO_MULTI;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const PROJETOS = '/projetos';
   static const CONTAS = '/contas';
   static const SALDO_CONTAS = '/saldo-contas';
+  static const EXTRATO_MULTI = '/extrato-multi';
 }
