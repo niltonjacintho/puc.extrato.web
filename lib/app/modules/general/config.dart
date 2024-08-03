@@ -104,7 +104,7 @@ class ConfigController extends GetxController {
           href: 'data:application/octet-stream;base64,$base64')
         ..target = 'blank';
 
-      anchor.download = '${fileName.trim()}' + exten;
+      anchor.download = '${fileName.trim()}$exten';
       universal_html.document.body?.append(anchor);
       anchor.click();
       anchor.remove();

@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   static Estilos estilo = Estilos.instance;
   static ConfigController config = Get.put(ConfigController());
-   static HomeController home = Get.put(HomeController());
+  static HomeController home = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class HomeView extends GetView<HomeController> {
     pageController = PageController(initialPage: tabIndex.value);
     late final List<PlutoMenuItem> orangeHoverMenus;
 
-    List<PlutoMenuItem> _makeMenus(BuildContext context) {
+    List<PlutoMenuItem> makeMenus(BuildContext context) {
       return [
         PlutoMenuItem(
           title: 'Início',
@@ -60,11 +60,11 @@ class HomeView extends GetView<HomeController> {
         PlutoMenuItem(
             title: 'Baixar APP',
             icon: Icons.android_rounded,
-            onTap: () => {home.getApk()}),
+            onTap: () => {home.getApk(context)}),
       ];
     }
 
-    orangeHoverMenus = _makeMenus(context);
+    orangeHoverMenus = makeMenus(context);
 
     final pageKey = GlobalKey();
 //TODO: REVER ESTE GLOBAL KEY
@@ -78,7 +78,7 @@ class HomeView extends GetView<HomeController> {
             ),
             PlutoMenuBar(
               mode: PlutoMenuBarMode.hover,
-              backgroundColor: Color(0xff00005a),
+              backgroundColor: const Color(0xff00005a),
               itemStyle: const PlutoMenuItemStyle(
                 activatedColor: Colors.white,
                 indicatorColor: Colors.deepOrange,

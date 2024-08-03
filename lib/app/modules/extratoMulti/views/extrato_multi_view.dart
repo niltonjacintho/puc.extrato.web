@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:multiple_search_selection/multiple_search_selection.dart';
-import 'package:pluto_grid_plus/pluto_grid_plus.dart';
 import 'package:pucextrato/app/modules/extratoProjetos/controllers/extrato_projetos_controller.dart';
 import 'package:pucextrato/app/modules/general/config.dart';
 import 'package:pucextrato/app/modules/projetos/controllers/projetos_controller.dart';
 
 import '../controllers/extrato_multi_controller.dart';
 
+// ignore: must_be_immutable
 class ExtratoMultiView extends GetView<ExtratoMultiController> {
   ExtratoMultiView({super.key});
   final ProjetosController projetos = Get.put(ProjetosController());
@@ -25,8 +25,7 @@ class ExtratoMultiView extends GetView<ExtratoMultiController> {
       fontSize: 16,
       fontWeight: FontWeight.bold,
     );
-    final RxList<PlutoRow> rows = extrato.rows;
-    int p = 0;
+    //final RxList<PlutoRow> rows = extrato.rows;
     MultipleSearchController searchController = MultipleSearchController();
     return Scaffold(
       body: Padding(

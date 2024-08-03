@@ -26,6 +26,7 @@ dependencies:
   flutter_form_builder: ^9.3.0
   universal_html: ^2.2.4
   multiple_search_selection: ^2.6.5
+  fl_toast: ^3.2.0
   
 dev_dependencies: 
   flutter_lints: ^4.0.0
@@ -40,4 +41,5 @@ flutter:
   uses-material-design: true
   assets:
     - ./assets/images/logo.png
+    - ./assets/app/extrato.apk
 
