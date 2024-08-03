@@ -146,7 +146,7 @@ class LoginView extends GetView<LoginController> {
                                     },
                                     label: const Text('Entrar'),
                                     icon: const Icon(Icons.cancel),
-                                    style: editors.buttonStyle(botao.normal),
+                                    style: editors.buttonStyle(Botao.normal),
                                   ),
                                 ],
                               ),

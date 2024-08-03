@@ -20,7 +20,6 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     late PageController pageController;
-    double largura = MediaQuery.of(context).size.width;
     var tabIndex = 0.obs;
     pageController = PageController(initialPage: tabIndex.value);
     late final List<PlutoMenuItem> orangeHoverMenus;

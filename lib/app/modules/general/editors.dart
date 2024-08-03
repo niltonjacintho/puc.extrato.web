@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-enum botao { normal, error }
+enum Botao { normal, error }
 
 class Editors extends StatefulWidget {
   const Editors({super.key});
 
-  Color _getCor(botao value) {
+  Color _getCor(Botao value) {
     Color result = const Color.fromARGB(255, 3, 45, 80);
     switch (value) {
-      case botao.error:
+      case Botao.error:
         result = const Color.fromARGB(255, 240, 33, 15);
         break;
-      case botao.normal:
+      case Botao.normal:
         result = const Color.fromARGB(255, 56, 214, 16);
         break;
       default:
@@ -36,7 +36,7 @@ class Editors extends StatefulWidget {
     );
   }
 
-  ButtonStyle buttonStyle(botao tipo) {
+  ButtonStyle buttonStyle(Botao tipo) {
     return ElevatedButton.styleFrom(
       textStyle: const TextStyle(fontSize: 20),
       backgroundColor: _getCor(tipo),
