@@ -15,7 +15,7 @@ class SaldoContasView extends GetView<SaldoContasController> {
     late PlutoGridStateManager stateManager;
     config.inicializarDatas();
     controller.clearRows();
-    controller.getExtrato();
+    controller.getExtratoContas();
 
     final List<PlutoColumn> columns = <PlutoColumn>[
       PlutoColumn(
@@ -60,7 +60,7 @@ class SaldoContasView extends GetView<SaldoContasController> {
     FocusNode searchFocusNode = FocusNode();
 
     config.fimPeriodo.listen((p0) {
-      controller.getExtrato();
+      controller.getExtratoContas();
     });
 
     return Scaffold(
@@ -80,7 +80,11 @@ class SaldoContasView extends GetView<SaldoContasController> {
               child: Obx(
                 () => PlutoGrid(
                   noRowsWidget: const Center(
-                    child: Text('Não encontrei dados para o período ativo '),
+                    child: Text(
+                      'Por favor, selecione uma conta',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   configuration: const PlutoGridConfiguration(
                       columnSize: PlutoGridColumnSizeConfig(

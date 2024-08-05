@@ -44,7 +44,7 @@ class LoginServices {
         projetos.refresh();
         coordenadorController.idCoordenador.value =
             int.parse(loginControler.usuario.value);
-        saldoContasController.getExtrato();
+        saldoContasController.getExtratoContas();
         // Get.to(() => const HomeView());
       }
       return response.statusCode!;

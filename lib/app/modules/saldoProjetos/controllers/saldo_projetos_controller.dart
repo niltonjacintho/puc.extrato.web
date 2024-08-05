@@ -22,7 +22,8 @@ class SaldoProjetosController extends GetxController {
   }
 
   getExtrato() async {
-    await saldoProjetosService.getExtrato();
+    print('vai chamar o saldo');
+    await saldoProjetosService.getExtratoSaldoProjetos();
   }
 
   getExtratoExcel(

@@ -26,9 +26,9 @@ class SaldoContasController extends GetxController {
     return _rows.isNotEmpty;
   }
 
-  getExtrato() async {
+  getExtratoContas() async {
     if (coordenadorController.idCoordenador.value != 0) {
-      await saldoContasService.getExtrato().then((value) {
+      await saldoContasService.getExtratoContas().then((value) {
         _rows.clear();
         for (var element in value) {
           _rows.add(element);

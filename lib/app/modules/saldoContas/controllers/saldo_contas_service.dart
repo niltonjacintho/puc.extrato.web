@@ -12,7 +12,7 @@ class SaldoContasService {
   ConfigController configController = Get.put(ConfigController());
   CoordenadorController coordenadorController =
       Get.put(CoordenadorController());
-  Future<RxList<PlutoRow>> getExtrato() async {
+  Future<RxList<PlutoRow>> getExtratoContas() async {
     var response = await dio.get(
         '${configController.urlPadrao}extratos/GetSaldosContas/coordenador/${coordenadorController.idCoordenador}/data/${configController.fimPeriodo.value.toIso8601String().substring(0, 10)}');
     List<dynamic> data = jsonDecode(response.data[0])['tabSaldoContas'];

@@ -34,10 +34,13 @@ class SaldoProjetosService {
   }
 
   getExtrato() async {
+    print('getting extrato');
     saldoProjetosController.rows.clear();
+    print(saldoProjetosController.rows.length);
     var response = await dio.get(
         '${configController.urlPadrao}extratos/GetAnaliseContas/coordenador/${coordenadorController.idCoordenador}/conta/${contasController.contaAtual.value}/data/${configController.fimPeriodo.value.toIso8601String().substring(0, 10)}');
     List<dynamic> data = jsonDecode(response.data[0])['tabAnaliseContas'];
+    print('${DateTime.now()} data length ${data.length}');
     for (var element in data) {
       final PlutoRow r = PlutoRow(
         cells: {
@@ -48,6 +51,27 @@ class SaldoProjetosService {
       saldoProjetosController.rows.add(r);
     }
     saldoProjetosController.refresh();
+  }
+
+  getExtratoSaldoProjetos() async {
+    print('getting extrato');
+    saldoProjetosController.rows.clear();
+    print(saldoProjetosController.rows.length);
+    var response = await dio.get(
+        '${configController.urlPadrao}extratos/GetAnaliseContas/coordenador/${coordenadorController.idCoordenador}/conta/${contasController.contaAtual.value}/data/${configController.fimPeriodo.value.toIso8601String().substring(0, 10)}');
+    List<dynamic> data = jsonDecode(response.data[0])['tabAnaliseContas'];
+    print('${DateTime.now()} data length ${data.length}');
+    saldoProjetosController.rows.clear();
+    for (var element in data) {
+      final PlutoRow r = PlutoRow(
+        cells: {
+          'nomeProjeto': PlutoCell(value: element['nomeProjeto']),
+          'saldo': PlutoCell(value: element['saldo']),
+        },
+      );
+      saldoProjetosController.rows.add(r);
+    }
+    //saldoProjetosController.refresh();
   }
 
   getExcel(

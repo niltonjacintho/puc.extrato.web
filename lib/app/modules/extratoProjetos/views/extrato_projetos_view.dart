@@ -178,7 +178,11 @@ class ExtratoProjetosView extends GetView<ExtratoProjetosController> {
                 () => PlutoGrid(
                   mode: PlutoGridMode.readOnly,
                   noRowsWidget: const Center(
-                    child: Text('Favor selecionar o projeto'),
+                    child: Text(
+                      'Por favor, selecione uma conta no menu acima!',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   configuration: const PlutoGridConfiguration(
                       localeText: PlutoGridLocaleText.brazilianPortuguese(),

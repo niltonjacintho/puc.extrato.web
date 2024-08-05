@@ -18,6 +18,16 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
 
   @override
   Widget build(BuildContext context) {
+    void rebuildAllChildren(BuildContext context) {
+      void rebuild(Element el) {
+        el.markNeedsBuild();
+        el.visitChildren(rebuild);
+      }
+
+      (context as Element).visitChildren(rebuild);
+    }
+
+    rebuildAllChildren(context);
     final List<PlutoColumn> columns = <PlutoColumn>[
       PlutoColumn(
         width: config.width(context, 80),
@@ -59,19 +69,35 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
 
     FocusNode textFieldFocusNode = FocusNode();
     FocusNode searchFocusNode = FocusNode();
+
+    SingleValueDropDownController dropController =
+        SingleValueDropDownController();
     controller.rows.clear();
     config.inicializarDatas();
-    contas.contaAtual.listen((p0) {
-      controller.getExtrato();
+    contas.contaAtual.listen((p0) async {
+      await controller.getExtrato();
+      // dropController.clearDropDown();
+      // dropController.dropDownValue = null;
     });
 
-    config.inicioPeriodo.listen((p0) {
-      controller.getExtrato();
+    config.inicioPeriodo.listen((p0) async {
+      // dropController.clearDropDown();
+      await controller.getExtrato();
     });
 
-    config.fimPeriodo.listen((p0) {
-      controller.getExtrato();
+    config.fimPeriodo.listen((p0) async {
+      // dropController.clearDropDown();
+      await controller.getExtrato();
     });
+
+    dropController.addListener(() async => {
+          // print('chamou'),
+          // print('will dispose ${dropController.dropDownValue}'),
+          await controller.getExtrato(),
+          dropController.clearDropDown(),
+          dropController.dropDownValue = null,
+          // print('after dispose ${dropController.dropDownValue}'),
+        } as VoidCallback);
 
     return Scaffold(
       body: Padding(
@@ -86,6 +112,7 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
                   flex: 2,
                   child: Obx(
                     () => DropDownTextField(
+                      controller: dropController,
                       clearOption: true,
                       textFieldDecoration: const InputDecoration(
                           label: Text('Escolha a conta'),
@@ -145,7 +172,11 @@ class SaldoProjetosView extends GetView<SaldoProjetosController> {
               child: Obx(
                 () => PlutoGrid(
                   noRowsWidget: const Center(
-                    child: Text('rows.value.length.toString()'),
+                    child: Text(
+                      'Por favor, selecione uma conta no menu acima!',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   configuration: const PlutoGridConfiguration(
                       columnSize: PlutoGridColumnSizeConfig(
